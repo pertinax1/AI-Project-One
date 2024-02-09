@@ -2,6 +2,9 @@ import pandas as pd
 
 __churn_column_name = "churn"
 
+def get_chrun_column_name():
+    return __churn_column_name
+
 def __split_dataframe_into_columns_with_churn(input_churn_df, list_of_column_names):
     churn_df_list = []
     for column_name in list_of_column_names:
