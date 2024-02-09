@@ -1,11 +1,15 @@
 import dataframe_utils
 import pandas as pd
 
+
+def make_column_list(raw_data_df, columns_to_exclude_df):
+    raw_data_df = pd.DataFrame()
+    for column_title in raw_data_df.columns:
+
 """
 TODO: The current scripts in here are for testing, remove if wanted
 """
-test_df = pd.read_csv("personal_resources/account_predict_data.csv")
-print(test_df.head())
+binned_data_df = pd.read_csv("output/account_df.csv")
 
 list_of_columns = ["gender", "contract_duration", "payment_method"]
 
