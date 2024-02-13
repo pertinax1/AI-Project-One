@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Churn Analysis - Exploratory Data Analysis and initial Machine Learning Baseline Model Using Logistic Regression
 
 ## Project 1 - ASU AI Course - 2/13/2023
@@ -139,22 +138,3 @@ Using customer data provided by Grid Dynamics (see Data Source below), perform a
 4. Data from GitHub Repo: griddynamics/ rnd-gcp-starter-kits
 https://github.com/griddynamics/rnd-gcp-starter-kits/tree/main
 5. Churn analytics in the technology and telecom industries using Google Vertex AI (https://blog.griddynamics.com/churn-analytics-in-the-technology-and-telecom-industries-using-google-vertex-ai-a-reference-notebook )
-=======
-# TODO: GIVE THIS A TITLE New Header
-
-## Overview
-- Provide a very brief one or two sentence description of the project
-
-## Repository Roadmap
-- File Name: what it does
-- Where is the presentation and writeup
-
-## Data Source
-- Where we got the data, what the data is (link)
-
-
-### Works Citied
-- Stuff from the internet
-- Stuff from chatgpt
-- etc.
->>>>>>> 9cc03254389f701dddeccb75cca7fb9b0f17a789
