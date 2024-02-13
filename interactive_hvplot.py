@@ -39,7 +39,7 @@ def create_interactive_plot():
     combined_df = combined_df.set_index('Selected Value')
 
     #create interactive bar plot and save it to a file for embedding
-    plot = combined_df.hvplot(y='churn', x='variable', groupby='Selected Value', kind='bar', legend='top_right', width=600, height=500) 
+    plot = combined_df.hvplot(y='churn', x='variable', groupby='Selected Value', kind='bar', Title='Churn Statistics', grid = True, xlabel = "Selected Value", ylabel = "Churn", yformatter = '%.2f', fontscale=1.5, legend='top_right', width=600, height=500).opts(xrotation=45,show_grid=True,framewise=True, shared_axes=False) 
     hvplot.save(plot, 'D:/ASU/homework/Project-One/output/interactive_plot.html')
 
     # Print the combined dataframe
