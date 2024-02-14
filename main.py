@@ -3,7 +3,6 @@ import interactive_hvplot
 import pandas as pd
 import hvplot.pandas
 
-
 __raw_binned_column_title = "col_to_bin"
 
 __exlude_list = ["churn_after_treatment",\
@@ -29,6 +28,9 @@ __print_ratio_dfs = False
 
 __include_title = True
 
+__create_interactive_plot_from_list = True
+__create_interactive_plot_from_files = False
+
 __debug = False
 
 def make_column_list(raw_data_df, binned_column_names_df):
@@ -45,21 +47,25 @@ def make_column_list(raw_data_df, binned_column_names_df):
 
     return list_of_columns
 
+"""
+Main Script Starts Here
+"""
 
 account_data_df = pd.read_csv("output/account_df.csv")
 binned_columns = pd.read_csv("output/column_names_to_bin.csv")
 
-
-
+#make the list of columns that are in the main dataframe excluding the binned columns
 list_of_columns = make_column_list(account_data_df, binned_columns)
 
+#make the ratio dataframes that will be used to create the graphs
 ratio_dfs_list = dataframe_utils.create_churn_ratio_dataframes(account_data_df, list_of_columns)
 
-#display data here, print, plot, etc
+#loop thorugh the created ratio_dfs and save them, create plots for them, or print them as specified
 for ratio_df in ratio_dfs_list:
 
     x_value = ratio_df.index.name
 
+    #if the dataframe is one we are uninterested in using for analysis ignore it
     ignore = False
     for exlude_name in __exlude_list:
         if exlude_name == x_value:
@@ -69,13 +75,16 @@ for ratio_df in ratio_dfs_list:
     if ignore:
         pass
     else:
+        #make a string for saving the data
         save_name = f"{dataframe_utils.get_chrun_column_name()}_vs_{x_value}"
 
+        #if we want out plots to have a title create it
         if __include_title:
             title_name = interactive_hvplot.create_formatted_column_title(save_name)
         else:
             title_name = ""
 
+        #if our data is sutiable for a line chart make it a line graph, otherwise a bar graph
         if ("_bin" in x_value) and \
         (x_value != "phone_min_bin") and \
         (x_value != "internet_min_bin"):
@@ -87,7 +96,7 @@ for ratio_df in ratio_dfs_list:
                 print("bin")
         else:
             ratio_df.index.rename(interactive_hvplot.create_formatted_column_title(x_value), inplace=True)
-            #plot = ratio_df.hvplot.bar(y=dataframe_utils.get_chrun_column_name())
+            
             plot = ratio_df.hvplot.bar(y=dataframe_utils.get_chrun_column_name(), \
                                         title = title_name)
             if __debug:
@@ -101,3 +110,8 @@ for ratio_df in ratio_dfs_list:
             
         if __print_ratio_dfs:
             print(ratio_df.head())
+
+if __create_interactive_plot_from_list:
+    interactive_hvplot.create_interactive_plot_from_df_list(ratio_dfs_list)
+elif __create_interactive_plot_from_files:
+    interactive_hvplot.create_interactive_plot_from_file_list()
