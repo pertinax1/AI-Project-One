@@ -1,0 +1,10 @@
+,col_to_bin
+0,tenure
+1,number_customer_service_calls
+2,phone_min
+3,internet_min
+4,phone_monthly_charges
+5,internet_monthly_charges
+6,avg_monthly_bill
+7,trigger_point
+8,cluster
